@@ -118,30 +118,12 @@ const icons = [
 
 const container = document.getElementById('icons-container');
 
-// Inietto contenuto ciclando elementi array con forEach
-// icons.forEach((element) =>{
-
-//     console.log(element.name)
-
-//     container.innerHTML += `
-    
-//         <div class="icon">
-//             <i style = "color: ${element.color}" class="${element.family} ${element.prefix}${element.name}"></i>
-//             <span>${element.name}</span>
-//         </div>
-    
-//     `;
-
-
-// });
 
 // Trasformo la creazione elementi DOM e inserimento html in funzione
 function createIcons(container, array){
 
     let content ='';
-
 	
-
     array.forEach((oggetto =>{
 
 		// Ogni volta genera un colore casuale
@@ -166,18 +148,65 @@ function createIcons(container, array){
 // Invoco la funzione
 createIcons(container, icons);
 
-// Intercetto il cambio di valore
+// Select dinamico
+// Funzione estrazione tipi da array di oggetti-icone
+function extractTypes(array){
 
+    const types = [];
+
+    array.forEach(element => {
+        types.push(element.type);
+    });
+
+    console.log(types);
+
+    const values = ['all'];
+
+    types.forEach(element =>{
+
+        if(!values.includes(element)){
+
+            values.push(element);
+
+        }
+
+    });
+
+    return values;
+}
+
+let risultato = extractTypes(icons);
+console.log(risultato);
+
+
+// Creo select con value dinamico
 const valueChange = document.getElementById('icon-type');
 
+let typeContent ='';
+
+risultato.forEach(value=>{
+
+	typeContent += ` <option value="${value}">${value}</option> `;
+
+});
+
+console.log(typeContent);
+
+valueChange.innerHTML = typeContent;
+
+
+// Intercetto il cambio di valore
+
+const valueChangeListner = document.getElementById('icon-type');
+
 // Ascoltatore di eventi per cambio valore
-valueChange.addEventListener('change',
+valueChangeListner.addEventListener('change',
 
 	function(){
 
 		value = this.value;
 
-		if(value == ''){
+		if(value == 'all'){
 			createIcons(container, icons);
 		} else{
 

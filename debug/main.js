@@ -143,3 +143,18 @@ function extractTypes(array){
 
 let risultato = extractTypes(icons);
 console.log(risultato);
+
+// Creo select con value dinamico
+const valueChange = document.getElementById('icon-type');
+
+let typeContent ='';
+
+risultato.forEach(value=>{
+
+	typeContent += ` <option value="${value}">${value}</option> `;
+
+});
+
+console.log(typeContent);
+
+valueChange.innerHTML = typeContent;
