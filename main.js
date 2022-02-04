@@ -138,29 +138,28 @@ const container = document.getElementById('icons-container');
 // Trasformo la creazione elementi DOM e inserimento html in funzione
 function createIcons(container, array){
 
-    array.forEach((element) =>{
+    let content ='';
 
-        console.log(element.name)
-    
-        container.innerHTML += `
+    array.forEach((oggetto =>{
+
+        content += `
         
-            <div class="icon">
-                <i style = "color: ${element.color}" class="${element.family} ${element.prefix}${element.name}"></i>
-                <span>${element.name}</span>
-            </div>
+        <div class="icon">
+            <i style = "color:${oggetto.color}" class="${oggetto.family} ${oggetto.prefix}${oggetto.name}"></i>
+            <div class="icon-text">${oggetto.name}</div>
+        </div>    
         
         `;
     
-    
-    });
-
-
+    }));
+    console.log(content);
+    container.innerHTML = content;
 
 }
 
 
 // Invoco la funzione
-// createIcons(container, icons);
+createIcons(container, icons);
 
 // Intercetto il cambio di valore
 
@@ -175,14 +174,29 @@ valueChange.addEventListener('change',
 
 		if(value == ''){
 			createIcons(container, icons);
+		} else{
+
+			// Uso filter per filtrare elementi array icons
+			const filtered = icons.filter((element) =>{
+
+				if(element.type == value){
+
+					return true;
+					// Quando torna true, crea array oggetti con type corrispondente a value
+
+				}
+
+				return false;
+
+			});
+
+			// Allora invoco la funzione di creazione per le icone selezionate
+			createIcons(container, filtered);
+
 		}
 
 
 	}
-
-
-
-
 
 );
 
