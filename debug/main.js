@@ -1,23 +1,145 @@
-// function randomColor(){
-//     return Math.floor(Math.random() * 16);
-// }
+const icons =[
 
-let hex = [1,2,3,4,5,6,7,8,9,'A', 'B', 'C', 'D', 'E', 'F'];
+	{
+		name: 'cat',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'crow',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'dog',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'dove',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'dragon',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'horse',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'hippo',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'fish',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'carrot',
+		prefix: 'fa-',
+		type: 'vegetable',
+		family: 'fas',
+		color: 'green'
+	},
+	{
+		name: 'apple-alt',
+		prefix: 'fa-',
+		type: 'vegetable',
+		family: 'fas',
+		color: 'green'
+	},
+	{
+		name: 'lemon',
+		prefix: 'fa-',
+		type: 'vegetable',
+		family: 'fas',
+		color: 'green'
+	},
+	{
+		name: 'pepper-hot',
+		prefix: 'fa-',
+		type: 'vegetable',
+		family: 'fas',
+		color: 'green'
+	},
+	{
+		name: 'user-astronaut',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas',
+		color: 'blue'
+	},
+	{
+		name: 'user-graduate',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas',
+		color: 'blue'
+	},
+	{
+		name: 'user-ninja',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas',
+		color: 'blue'
+	},
+	{
+		name: 'user-secret',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas',
+		color: 'blue'
+	}
 
-function randomColor(){
+];
 
-    let color ='';
+// Funzione estrazione tipi da array di oggetti-icone
+function extractTypes(array){
 
-    for(let i = 0; i < 6; i++){
+    const types = [];
 
-        color += hex[Math.floor(Math.random() * 15)]
+    array.forEach(element => {
+        types.push(element.type);
+    });
 
+    console.log(types);
 
-    }
+    const values = ['all'];
 
-    // console.log(color);
-    return  '#' + color;
+    types.forEach(element =>{
+
+        if(!values.includes(element)){
+
+            values.push(element);
+
+        }
+
+    });
+
+    return values;
 }
 
-let random = randomColor();
-console.log(random);
+let risultato = extractTypes(icons);
+console.log(risultato);
