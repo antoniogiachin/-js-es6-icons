@@ -119,19 +119,45 @@ const icons = [
 const container = document.getElementById('icons-container');
 
 // Inietto contenuto ciclando elementi array con forEach
-icons.forEach((element) =>{
+// icons.forEach((element) =>{
 
-    console.log(element.name)
+//     console.log(element.name)
 
-    container.innerHTML += `
+//     container.innerHTML += `
     
-        <div class="icon">
-            <i class="${element.family} ${element.prefix}${element.name}"></i>
-            <span>${element.name}</span>
-        </div>
+//         <div class="icon">
+//             <i style = "color: ${element.color}" class="${element.family} ${element.prefix}${element.name}"></i>
+//             <span>${element.name}</span>
+//         </div>
     
-    `;
+//     `;
 
 
-});
+// });
 
+// Trasformo la creazione elementi DOM e inserimento html in funzione
+function createIcons(container, array){
+
+    array.forEach((element) =>{
+
+        console.log(element.name)
+    
+        container.innerHTML += `
+        
+            <div class="icon">
+                <i style = "color: ${element.color}" class="${element.family} ${element.prefix}${element.name}"></i>
+                <span>${element.name}</span>
+            </div>
+        
+        `;
+    
+    
+    });
+
+
+
+}
+
+
+// Invoco la funzione
+createIcons(container, icons);
