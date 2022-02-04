@@ -160,4 +160,29 @@ function createIcons(container, array){
 
 
 // Invoco la funzione
-createIcons(container, icons);
+// createIcons(container, icons);
+
+// Intercetto il cambio di valore
+
+const valueChange = document.getElementById('icon-type');
+
+// Ascoltatore di eventi per cambio valore
+valueChange.addEventListener('change',
+
+	function(){
+
+		value = this.value;
+
+		if(value == ''){
+			createIcons(container, icons);
+		}
+
+
+	}
+
+
+
+
+
+);
+
