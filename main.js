@@ -140,12 +140,17 @@ function createIcons(container, array){
 
     let content ='';
 
+	
+
     array.forEach((oggetto =>{
+
+		// Ogni volta genera un colore casuale
+		let random = randomColor();
 
         content += `
         
         <div class="icon">
-            <i style = "color:${oggetto.color}" class="${oggetto.family} ${oggetto.prefix}${oggetto.name}"></i>
+            <i style = "color:${random}" class="${oggetto.family} ${oggetto.prefix}${oggetto.name}"></i>
             <div class="icon-text">${oggetto.name}</div>
         </div>    
         
@@ -200,3 +205,23 @@ valueChange.addEventListener('change',
 
 );
 
+// Funzione per colore random
+function randomColor(){
+
+	// array con valori possibili di un colore HEX
+	let hex = [1,2,3,4,5,6,7,8,9,'A', 'B', 'C', 'D', 'E', 'F'];
+    
+	// variabile vuota che sarà codice colore
+	let color ='';
+
+    for(let i = 0; i < 6; i++){
+
+        color += hex[Math.floor(Math.random() * 15)]
+
+
+    }
+
+    // console.log(color);
+	// Nel return aggiungo asterisco
+    return  '#' + color;
+}

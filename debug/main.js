@@ -20,4 +20,4 @@ function randomColor(){
 }
 
 let random = randomColor();
-console.log(random)
+console.log(random);
