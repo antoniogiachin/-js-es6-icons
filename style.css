@@ -1,59 +1,64 @@
 *{
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
 }
 
 /* header */
 
-.header-top{
+header .header-top{
     height: 80px;
-    line-height: 80px;
-    color: blueviolet;
-    font-size: 3em;
-    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    font-size: 2.5em;
+    color: #29b1dd;
+    padding-left: 5px;
+    font-weight: bold;
 }
 
-.header-bottom{
+header .header-bottom{
+    background-color: #29b1dd;
+    height: 50px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 80px;
-    background-color: blueviolet;
-    gap: 20px;
-    color: white;
+    justify-content: center;
+    gap: 50px;
+    font-size: 1.5;
 }
 
 /* main */
-.container{
-    max-width: 1300px;
-    height: 800px;
-    margin: auto;
+main .container{
+    background-color: lightgray;
+    height: calc(100vh - 130px);
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    padding: 50px;
+    justify-content: space-around;
     align-items: center;
-    gap: 20px;
-    background-color: lightgray;
+    gap: 10px;
 }
 
-main .icon {
+main .icon{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-basis: calc(100% / 5);
+    width: calc(100% / 5);
     height: 150px;
-    gap: 50px;
     border: 3px solid black;
-    border-radius: 40px;
+    border-radius: 30px;
+    gap: 20px;
     font-size: 1.5em;
-    text-transform:capitalize;
     font-weight: bold;
 }
 
 main .icon:hover{
-    background-color: aqua;
-    color: #222;
+    background-color: lightsalmon;
+    cursor: pointer;
 }

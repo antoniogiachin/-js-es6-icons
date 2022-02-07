@@ -1,5 +1,5 @@
-// Array di oggetti icone
-const icons = [
+// Icone predefinite
+const icons =[
 	{
 		name: 'cat',
 		prefix: 'fa-',
@@ -114,143 +114,126 @@ const icons = [
 	}
 ];
 
-// Mi riferisco al container delle icone
+
+// Mi riferisco a container icons
 
 const container = document.getElementById('icons-container');
 
+// Invoco funzione per creazione icone
+createIcons(container, icons);
 
-// Trasformo la creazione elementi DOM e inserimento html in funzione
+// Mi riferisco a select
+
+const select = document.getElementById('select-type');
+
+// Invoco funzione per creazione select
+createSelection(select, icons);
+
+
+//Ascoltatore di eventi per cambio icone
+select.addEventListener('change',
+
+    function(){
+
+        value = this.value;
+
+        const selected = icons.filter(value =>{
+
+            if(value.type == this.value){
+
+                return true;
+            }
+
+            return false;
+        });
+
+        if(value == 'all'){
+
+            createIcons(container, icons)
+
+        } else {
+            createIcons(container, selected);
+        }
+
+
+    }
+
+);
+
+
+/* ------ FUNZIONI ------*/
+
+// Funzione per creare div
 function createIcons(container, array){
 
-    let content ='';
-	
+    let content ='';	
+
     array.forEach((oggetto =>{
 
 		// Ogni volta genera un colore casuale
-		let random = randomColor();
+		oggetto.color = randomHexColor();
 
         content += `
         
         <div class="icon">
-            <i style = "color:${random}" class="${oggetto.family} ${oggetto.prefix}${oggetto.name}"></i>
+            <i style = "color:${oggetto.color}" class="${oggetto.family} ${oggetto.prefix}${oggetto.name}"></i>
             <div class="icon-text">${oggetto.name}</div>
         </div>    
         
         `;
     
     }));
-    console.log(content);
+
     container.innerHTML = content;
-
 }
-
-
-// Invoco la funzione
-createIcons(container, icons);
-
-// Select dinamico
-// Funzione estrazione tipi da array di oggetti-icone
-function extractTypes(array){
-
-    const types = [];
-
-    array.forEach(element => {
-        types.push(element.type);
-    });
-
-    console.log(types);
-
-    const values = ['all'];
-
-    types.forEach(element =>{
-
-        if(!values.includes(element)){
-
-            values.push(element);
-
-        }
-
-    });
-
-    return values;
-}
-
-let risultato = extractTypes(icons);
-console.log(risultato);
-
-
-// Creo select con value dinamico
-const valueChange = document.getElementById('icon-type');
-
-let typeContent ='';
-
-risultato.forEach(value=>{
-
-	typeContent += ` <option value="${value}">${value}</option> `;
-
-});
-
-console.log(typeContent);
-
-valueChange.innerHTML = typeContent;
-
-
-// Intercetto il cambio di valore
-
-const valueChangeListner = document.getElementById('icon-type');
-
-// Ascoltatore di eventi per cambio valore
-valueChangeListner.addEventListener('change',
-
-	function(){
-
-		value = this.value;
-
-		if(value == 'all'){
-			createIcons(container, icons);
-		} else{
-
-			// Uso filter per filtrare elementi array icons
-			const filtered = icons.filter((element) =>{
-
-				if(element.type == value){
-
-					return true;
-					// Quando torna true, crea array oggetti con type corrispondente a value
-
-				}
-
-				return false;
-
-			});
-
-			// Allora invoco la funzione di creazione per le icone selezionate
-			createIcons(container, filtered);
-
-		}
-
-
-	}
-
-);
 
 // Funzione per colore random
-function randomColor(){
 
-	// array con valori possibili di un colore HEX
-	let hex = [1,2,3,4,5,6,7,8,9,'A', 'B', 'C', 'D', 'E', 'F'];
+function randomHexColor(){
+
+    // array con valori possibili di un colore HEX
+	let hex = '0123456789abcdef';
     
 	// variabile vuota che sarà codice colore
 	let color ='';
 
     for(let i = 0; i < 6; i++){
 
-        color += hex[Math.floor(Math.random() * 15)]
+        color += hex[Math.floor(Math.random() * hex.length)];
 
 
     }
 
-    // console.log(color);
 	// Nel return aggiungo asterisco
     return  '#' + color;
+    
+}
+
+
+
+
+function createSelection (container, array){
+
+    const types =['all'];
+    
+    array.forEach(value =>{
+    
+        if(!types.includes(value.type)){
+    
+            types.push(value.type);
+    
+        }
+    
+    });
+    
+    
+    types.forEach(value =>{
+    
+	    let option = `<option value="${value}">${value}</option>`;
+    
+        console.log(option);
+    
+        container.innerHTML += option;
+    });
+
 }
